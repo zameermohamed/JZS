@@ -1,5 +1,5 @@
 import mongoose, { Document } from "mongoose";
-import { Listing } from "./listings.js"
+import { Listing } from "./listing.js"
 
 interface User extends Document {
     username: string;

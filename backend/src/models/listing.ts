@@ -1,5 +1,5 @@
 import mongoose, { Document } from "mongoose";
-import { User } from "./users.js"
+import { User } from "./user.js"
 
 interface Listing extends Document {
     img: string;
