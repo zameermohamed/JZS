@@ -17,7 +17,7 @@ const getExampleByIdController = async (
     });
 
     if (!exampleDoc) {
-      throw new DatabaseError("Could not find the correct doument", 404);
+      throw new DatabaseError("Could not find the correct document", 404);
     }
 
     res.status(200).json({ document: exampleDoc });

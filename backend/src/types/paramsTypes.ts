@@ -1,4 +1,3 @@
-
 export interface ExampleParams {
   id: string;
 }
@@ -11,4 +10,12 @@ export interface ExampleReqBody {
 
 export interface UserReqBody {
   id: string;
+}
+
+export interface UserIdParams {
+  userId: string;
+}
+
+export interface listingReqBody {
+  listing: string;
 }
