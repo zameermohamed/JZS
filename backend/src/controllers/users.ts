@@ -14,7 +14,7 @@ const getCurrentUser = async (
 
     const userDoc: User | null = await UserModel.findOne({
       _id: userId,
-    });
+    }).populate("mostRecentStay");
 
     if (!userDoc) {
       throw new DatabaseError("Could not find the correct document", 404);

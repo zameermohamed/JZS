@@ -9,16 +9,18 @@ const Listings = () => {
 
   useEffect(() => {
     fetchListings(setListings);
-  }, []);
+  }, [listings]);
 
   return (
     <div id="listings">
       {listings.map((listing) => {
         return (
           <PropertyTile
-            key={listing.id}
+            key={listing._id}
+            _id={listing._id}
             img={listing.img}
             name={listing.name}
+            likes={listing.likes}
           />
         );
       })}

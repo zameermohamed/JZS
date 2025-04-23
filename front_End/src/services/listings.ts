@@ -19,3 +19,16 @@ export const fetchListings = async (
   const data = await getAllListings();
   setListings(data.listings);
 };
+
+export const updateLikes = async (listingId: string) => {
+  const requestOptions = {
+    method: "PUT",
+  };
+  const response = await fetch(
+    `${BACKEND_URL}/listings/like/${listingId}`,
+    requestOptions
+  );
+  if (response.status !== 200) {
+    throw new Error("Unable to update like listing");
+  }
+};
