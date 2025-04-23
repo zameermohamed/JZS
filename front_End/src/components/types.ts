@@ -5,7 +5,7 @@ export interface userProfile {
 }
 
 export interface PropertyAttributes {
-  image: string;
+  img: string;
   name: string;
   id?: number;
 }

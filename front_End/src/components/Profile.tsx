@@ -8,7 +8,7 @@ const Profile = () => {
     username: "",
     bio: "",
     mostRecentStay: {
-      image: "",
+      img: "",
       name: "",
       id: 0,
     },
@@ -20,8 +20,7 @@ const Profile = () => {
         username: "HolidayMaker",
         bio: "I am a respectful guest who loves to go on holidays!",
         mostRecentStay: {
-          image:
-            "https://media.vrbo.com/lodging/28000000/27320000/27314000/27313935/e7c3076b.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+          img: "https://media.vrbo.com/lodging/28000000/27320000/27314000/27313935/e7c3076b.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
           name: "Beach House",
           id: 1,
         },
@@ -36,7 +35,7 @@ const Profile = () => {
       <p>{user.bio}</p>
       <h2>My most recent stay:</h2>
       <PropertyTile
-        image={user.mostRecentStay.image}
+        img={user.mostRecentStay.img}
         name={user.mostRecentStay.name}
         id={user.mostRecentStay.id}
       />
