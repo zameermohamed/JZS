@@ -5,7 +5,12 @@ import {
   SingleListingResponse,
 } from "../types/responsesTypes.js";
 import { DatabaseError } from "../types/errorTypes.js";
-import { listingReqBody, UserIdParams } from "../types/paramsTypes.js";
+import {
+  ListingIdParams,
+  listingReqBody,
+  UserIdParams,
+  UserReqBody,
+} from "../types/paramsTypes.js";
 import mongoose from "mongoose";
 import { UserModel } from "../models/user.js";
 
@@ -75,4 +80,44 @@ const updateListingUser = async (
   }
 };
 
-export { getAllListings, updateListingUser };
+const updateListingLikes = async (
+  req: Request<ListingIdParams, {}, UserReqBody, {}>,
+  res: Response<ListingDocumentResponse>,
+  next: NextFunction
+) => {
+  try {
+    const listingId: string = String(req.params.listingId);
+    const userId: string = String(req.body.id);
+
+    if (!mongoose.Types.ObjectId.isValid(listingId)) {
+      throw new DatabaseError("Invalid listing ID format", 400);
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      throw new DatabaseError("Invalid user ID format", 400);
+    }
+
+    const user = await UserModel.findOne({ _id: userId });
+    if (!user) {
+      throw new DatabaseError("No user with that ID", 404);
+    }
+    const listing = await ListingModel.findById(listingId);
+
+    if (!listing) {
+      throw new DatabaseError("No listing with that ID", 404);
+    }
+    if (listing) {
+      const hasLiked = listing.likes.some((id) => id.toString() === userId);
+      const update = hasLiked
+        ? { $pull: { likes: userId } }
+        : { $addToSet: { likes: userId } };
+      await ListingModel.findByIdAndUpdate(listingId, update, { new: true });
+      const listings: Listing[] | null = await ListingModel.find();
+      res.status(200).json({ listings: listings });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getAllListings, updateListingUser, updateListingLikes };

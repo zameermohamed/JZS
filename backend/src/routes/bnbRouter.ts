@@ -1,11 +1,16 @@
 import { Request, Response, Router } from "express";
 import { getCurrentUser } from "../controllers/users.js";
-import { getAllListings, updateListingUser } from "../controllers/listings.js";
+import {
+  getAllListings,
+  updateListingLikes,
+  updateListingUser,
+} from "../controllers/listings.js";
 
 const bnbRouter: Router = Router();
 
 bnbRouter.get("/me", getCurrentUser);
 bnbRouter.get("/listings", getAllListings);
+bnbRouter.put("/listings/like/:listingId", updateListingLikes);
 bnbRouter.put("/listings/:userId", updateListingUser);
 
 export default bnbRouter;

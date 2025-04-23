@@ -19,3 +19,7 @@ export interface UserIdParams {
 export interface listingReqBody {
   listing: string;
 }
+
+export interface ListingIdParams {
+  listingId: string;
+}
