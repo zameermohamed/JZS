@@ -2,6 +2,7 @@ import userImg from "../assets/UserImg.webp";
 import PropertyTile from "./PropertyTile";
 import { useEffect, useState } from "react";
 import { userProfile } from "./types";
+import { fetchUser } from "../services/profile";
 
 const Profile = () => {
   const [user, setUser] = useState<userProfile>({
@@ -15,17 +16,9 @@ const Profile = () => {
   });
 
   useEffect(
-    () =>
-      setUser({
-        username: "HolidayMaker",
-        bio: "I am a respectful guest who loves to go on holidays!",
-        mostRecentStay: {
-          img: "https://media.vrbo.com/lodging/28000000/27320000/27314000/27313935/e7c3076b.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
-          name: "Beach House",
-          id: 1,
-        },
-      }),
-    []
+    () => {
+      fetchUser(setUser)
+    },[]
   );
 
   return (
