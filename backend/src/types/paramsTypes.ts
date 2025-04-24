@@ -23,3 +23,8 @@ export interface listingReqBody {
 export interface ListingIdParams {
   listingId: string;
 }
+
+export interface authenticationBody {
+  username: string;
+  password: string;
+}

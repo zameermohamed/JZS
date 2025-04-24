@@ -21,3 +21,7 @@ export interface PostResponce<T> {
   msg: String;
   examples: T[];
 }
+
+export interface TokenDocumentResponse {
+  token: String | undefined;
+}
