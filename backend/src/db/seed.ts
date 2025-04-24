@@ -16,7 +16,8 @@ const seedDatabase = async (): Promise<void> => {
     const holidayMaker = await UserModel.create({
         username: "holidayMaker",
         bio: "I am a respectful guest who loves to go on holidays!",
-        profilePic: "https://i.ytimg.com/vi/Q36THRWXRDY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAWDwEwXNEG6udMXXxNkjBCi4DRZg"
+        profilePic: "https://i.ytimg.com/vi/Q36THRWXRDY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAWDwEwXNEG6udMXXxNkjBCi4DRZg",
+        password: "Password1"
     });
 
     await holidayMaker.save();
@@ -24,7 +25,8 @@ const seedDatabase = async (): Promise<void> => {
     const serialVacationer = await UserModel.create({
         username: "serialVacationer",
         bio: "I live for the beach",
-        profilePic: "https://lionsafari.com/wp-content/uploads/2022/03/SCARLET-2-scaled.jpg"
+        profilePic: "https://lionsafari.com/wp-content/uploads/2022/03/SCARLET-2-scaled.jpg",
+        password: "Password2"
     });
 
     await serialVacationer.save();
