@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import { userProfile } from "./types";
 import { fetchUser } from "../services/profile";
 
-const Profile = () => {
+interface ProfileProps {
+  trigger: number;
+  setTrigger: React.Dispatch<React.SetStateAction<number>>;
+}
+const Profile: React.FC<ProfileProps> = ({ trigger, setTrigger }) => {
   const [user, setUser] = useState<userProfile>({
     username: "",
     bio: "",
@@ -18,7 +22,7 @@ const Profile = () => {
 
   useEffect(() => {
     fetchUser(setUser);
-  }, [user.mostRecentStay.likes]);
+  }, [trigger]);
 
   return (
     <div id="profile">
@@ -31,6 +35,8 @@ const Profile = () => {
         name={user.mostRecentStay.name}
         _id={user.mostRecentStay._id}
         likes={user.mostRecentStay.likes}
+        setTrigger={setTrigger}
+        trigger={trigger}
       />
     </div>
   );

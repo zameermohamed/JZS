@@ -4,12 +4,17 @@ import { PropertyAttributes } from "./types";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const Listings = () => {
+interface ListingsProps {
+  trigger: number;
+  setTrigger: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Listings: React.FC<ListingsProps> = ({ trigger, setTrigger }) => {
   const [listings, setListings] = useState<PropertyAttributes[]>([]);
 
   useEffect(() => {
     fetchListings(setListings);
-  }, [listings]);
+  }, [trigger]);
 
   return (
     <div id="listings">
@@ -21,6 +26,8 @@ const Listings = () => {
             img={listing.img}
             name={listing.name}
             likes={listing.likes}
+            setTrigger={setTrigger}
+            trigger={trigger}
           />
         );
       })}
