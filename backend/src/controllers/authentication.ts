@@ -1,10 +1,7 @@
 import { generateToken } from "../lib/token.js";
 import { UserModel, User } from "../models/user.js";
 import { Request, Response, NextFunction } from "express";
-import {
-  TokenDocumentResponse,
-  UserDocumentResponse,
-} from "../types/responsesTypes.js";
+import { TokenDocumentResponse } from "../types/responsesTypes.js";
 import { authenticationBody } from "../types/paramsTypes.js";
 import { DatabaseError } from "../types/errorTypes.js";
 
@@ -25,7 +22,7 @@ export const createToken = async (
     if (!isMatch) {
       throw new DatabaseError("Password does not match", 404);
     }
-    const token = generateToken(userDB._id, next);
+    const token = generateToken(userDB._id);
     res.status(200).json({ token: token });
   } catch (error) {
     next(error);
