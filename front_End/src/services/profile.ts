@@ -2,11 +2,14 @@ import { userProfile } from "../components/types";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-const getCurrentUser = async () => {
+const getCurrentUser = async (token: string) => {
   const requestOptions = {
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   };
-  const response = await fetch(`${BACKEND_URL}/me`, requestOptions);
+  const response = await fetch(`${BACKEND_URL}/verify1`, requestOptions);
   if (response.status !== 200) {
     throw new Error("Unable to fetch user");
   }
@@ -15,8 +18,8 @@ const getCurrentUser = async () => {
 };
 
 export const fetchUser = async (
-  setUser: React.Dispatch<React.SetStateAction<userProfile>>
+  setUser: React.Dispatch<React.SetStateAction<userProfile>>, token: string
 ) => {
-  const data = await getCurrentUser();
+  const data = await getCurrentUser(token);
   setUser(data.user);
 };

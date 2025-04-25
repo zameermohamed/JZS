@@ -12,6 +12,10 @@ export interface UserReqBody {
   id: string;
 }
 
+export interface TokenReqBody {
+  id?: string;
+}
+
 export interface UserIdParams {
   userId: string;
 }

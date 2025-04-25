@@ -20,3 +20,7 @@ export interface PropertyAttributesUser {
   name: string;
   likes: string[];
 }
+
+export interface TokenResponse {
+  token: string
+}
