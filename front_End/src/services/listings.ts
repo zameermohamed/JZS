@@ -32,3 +32,22 @@ export const updateLikes = async (listingId: string) => {
     throw new Error("Unable to update like listing");
   }
 };
+
+export const updateLikes_verified = async (
+  listingId: string,
+  token: string
+) => {
+  const requestOptions = {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(
+    `${BACKEND_URL}/verify2/${listingId}`,
+    requestOptions
+  );
+  if (response.status !== 200) {
+    throw new Error("Unable to update like listing");
+  }
+};

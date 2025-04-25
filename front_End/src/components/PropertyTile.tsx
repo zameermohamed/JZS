@@ -1,4 +1,4 @@
-import LikeButton from "./LikeButton";
+import { LikeButton, LikeButton_verified } from "./LikeButton";
 import { PropertyAttributes } from "./types";
 
 const PropertyTile = ({
@@ -14,12 +14,14 @@ const PropertyTile = ({
       <img className="property-img" src={img}></img>
       <p>{name}</p>
       <p>Number of likes: {likes.length}</p>
-      <LikeButton
-        id={_id}
-        likes={likes}
-        trigger={trigger}
-        setTrigger={setTrigger}
-      />
+      {localStorage.getItem("token") && (
+        <LikeButton_verified
+          id={_id}
+          likes={likes}
+          trigger={trigger}
+          setTrigger={setTrigger}
+        />
+      )}
     </div>
   );
 };

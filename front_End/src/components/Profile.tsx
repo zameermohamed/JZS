@@ -1,7 +1,7 @@
 import PropertyTile from "./PropertyTile";
 import { useEffect, useState } from "react";
 import { userProfile } from "./types";
-import { fetchUser } from "../services/profile";
+import { fetchUser_verified } from "../services/profile";
 
 interface ProfileProps {
   trigger: number;
@@ -21,7 +21,11 @@ const Profile: React.FC<ProfileProps> = ({ trigger, setTrigger }) => {
   });
 
   useEffect(() => {
-    fetchUser(setUser);
+    let token = localStorage.getItem("token");
+    if (!token) {
+      token = "test";
+    }
+    fetchUser_verified(setUser, token);
   }, [trigger]);
 
   return (

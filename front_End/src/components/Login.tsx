@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { postToken } from "../services/authentication";
+import { useNavigate } from "react-router-dom";
 
 const login: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await postToken(username.trim(), password.trim())
+    await postToken(username.trim(), password.trim(), navigate);
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -33,5 +35,3 @@ const login: React.FC = () => {
 };
 
 export default login;
-
-  
